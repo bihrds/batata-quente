@@ -3,38 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="./paginaInicio.css">
     <title>Batata Quente</title>
 </head>
-    <body>
-
-            <h1 class="tituloPrincipal">
-                    Batata<br>Quente<br>
-                </h1>
-
-            <label class="modo">Modo:</label>
-            <label class="nmrJogadores">Números de Jogadores:</label>
-                
-                <button class="botão Voltar"
-                    >Voltar 
-                </button>
-                <button class="botão Sair"
-                    >Sair X
-                </button>
-                
-                <button class="Modo Solo"
-                    >Solo
-                </button>
-                <button class="Modo Versus"
-                    >Versus
-                </button>
-                <button class="Modo ContraTempo"
-                    >Contra o Tempo
-                </button>
-            
-            <input class="quantidade" type ="number">
-                <button class="iniciarJogo"
-                    >Iniciar Jogo
-                </button>
-    </body>
+<body>
+    <main class="card-inicial">
+        <h1 class="tituloPrincipal">Batata<br>Quente<br></h1>
+        
+        <h2 class="modo">Modo:</h2>
+        <div class="container-modo">
+            <button class="botao-modo solo">Solo</button>
+            <button class="botao-modo versus">Versus</button>
+            <button class="botao-modo contra o tempo">Contra o Tempo</button>
+        </div>
+        
+        <h2 class="nmrJogadores">Números de Jogadores:</h2>
+        <input class="quantidade" type ="number" min="1" max="4">
+        <a class="iniciarJogo" href="./pagina2.html?modo=versus&qtd=3">Iniciar Jogo</a>
+    </main>
+    <script src="./js/funcaoSelecionar.js"></script>
+</body>
 </html>
