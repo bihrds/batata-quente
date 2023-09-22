@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    background-image: url("fundo\ real.jpg");
+    height: 620px;
+    width: 1300px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    }
+    
+.tituloPrincipal{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    font-size: 50px;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 1px 1px yellow;
+    line-height: 0.7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+.modo{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    font-size: 30px;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 1px 1px yellow;
+    font-family: 'Geneva'
+    }
+
+.nmrJogadores{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    font-size: 30px;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 1px 1px yellow;
+    font-family: 'Geneva'
+} 
+
+.botão{
+    position: relative;
+    top: 6%;
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: yellow;
+    box-shadow: 10px 10px 30px #00000059;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.Voltar{
+    left: 15%;
+}
+
+.Sair{
+    left: 71%;
+}
+
+.Modo{
+    position: relative;
+    top: 42%;
+    width: 170px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: yellow;
+    box-shadow: 10px 10px 30px #00000059;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.Solo{
+    left: 320px;
+}
+
+.Versus{
+    right: 70px;
+}
+
+.ContraTempo{
+    left: 200px;
+}
+
+.quantidade{
+    position: relative;
+    right: 210px;
+    top: 60%;
+    width: 190px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: yellow;
+    box-shadow: 10px 10px 30px #00000059;
+    cursor: pointer;
+}
+
+.iniciarJogo{
+    position: relative;
+    right: 450px;
+    top: 75%;
+    width: 280px;
+    height: 68px;
+    border-radius: 10px;
+    background-color: yellow;
+    box-shadow: 10px 10px 30px #00000059;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    cursor: pointer;
+}
