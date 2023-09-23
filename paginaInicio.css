@@ -57,6 +57,10 @@ h2{
     text-shadow: 1px 1px #ffbe19;
 }
 
+.nmrJogadores{
+    display: none;
+}
+
 .botao-modo{
     width: 170px;
     height: 50px;
@@ -85,6 +89,8 @@ h2{
     font-size: 24px;
     font-weight: 500;
     text-align: center;
+
+    display: none;
 }
 
 .quantidade:focus{
@@ -95,6 +101,7 @@ h2{
 .iniciarJogo{
     width: 280px;
     height: 68px;
+    margin-top: 20px;
     border-radius: 10px;
     border: none;
     background-color: #ffbe19;
@@ -118,4 +125,25 @@ h2{
     background: #8F0F0F;
     color: #ffbe19;
     border: solid 1px #ffbe19;
+}
+
+@media (max-width: 840px) {
+    body{
+        height: 100%;
+        width: 100%;
+    }
+    .card-inicial{
+        height: auto;
+        margin: 30px 0px;
+    }
+    .tituloPrincipal{
+        font-size: 30px;
+    }
+    .container-modo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
 }
