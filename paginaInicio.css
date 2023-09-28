@@ -112,6 +112,12 @@ h2{
     border: solid 1px #ffbe19;
 }
 
+.aviso{
+    color: #ffbe19;
+    font-size: 16px;
+    font-weight: 600;
+}
+
 @media (max-width: 840px) {
     .card-inicial{
         width: calc(100vw - 60px);
@@ -147,5 +153,9 @@ h2{
         font-size: 20px;
         height: 35px;
         width: 35px;
-    }    
+    }
+    .aviso{
+        font-size: 11px;
+        margin: 0 0 10px 0;
+    }
 }
