@@ -8,7 +8,7 @@
 }
 
 body {
-    background-image: url("./assets/Fundo.jpg");
+    background-image: url("../assets/Fundo.jpg");
     background-position: center;
     background-repeat: repeat-y;
     background-size: cover;
@@ -31,8 +31,21 @@ body {
     align-items: center;
     flex-direction: column;
 }
-    
+
+.container-titulo{
+    height: 30%;
+    background-image: url('../assets/batata-fogo.png');
+    background-position: bottom 100% left 50%;
+    background-size: 50%;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
 .tituloPrincipal{
+    align-self: flex-end;
     text-align: center;
     font-size: 50px;
     font-weight: 600;
@@ -99,7 +112,7 @@ h2{
     text-align: center;
 }
 
-.botao-modo:hover, .iniciarJogo:hover, .botao-quantidade:hover{
+.botao-modo:hover, .iniciarJogo:hover, .botao-quantidade:hover, .botao-voltar:hover, .botao-comecar:hover{
     transform: scale(1.05);
     background: #8F0F0F;
     color: #ffbe19;

@@ -106,6 +106,8 @@ botaoIniciarHTML.addEventListener('click', ()=>{
         avisoHTML.innerHTML = '*Selecione a quantidade de jogadores'
         return
     }
+    
     const modoSelecionado = soloSelecionado ? 'solo' : versusSelecionado ? 'versus' : 'contra-o-tempo'
-    botaoIniciarHTML.href = `./pagina2.html?modo=${modoSelecionado}&jogadores=${quantidadeJogadores}`
+    botaoIniciarHTML.href = `./batataQuente.html?modo=${modoSelecionado}&jogadores=${quantidadeJogadores}`
 })
+
