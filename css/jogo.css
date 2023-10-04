@@ -77,10 +77,16 @@ main{
     border: none;
     margin: 10px auto 0 auto;
     display: block;
+    transition: 0.3s;
+}
+
+.input-jogadores::placeholder{
+    color: #000;
 }
 
 .input-jogadores:focus{
     outline: none;
+    transform: scale(1.05);
 }
 
 @media (max-width: 500px) {

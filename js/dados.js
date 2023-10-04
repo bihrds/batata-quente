@@ -1,4 +1,6 @@
-export  const listaDePalavras = `a
+//A base de dados para verificar se a palvara existe
+    //Ela está em string por isso, foi usado o .split('\n)
+export const listaDePalavras = `a
 Aarao
 aba
 abacate
