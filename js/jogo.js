@@ -1,11 +1,14 @@
 //Definições de constantes, que referenciam os elementos HTML
 const bodyHtml = document.querySelector('body')
-const secaoNomes = document.querySelector('.card-nomes')
+
+const secaoNomesHtml = document.querySelector('.card-nomes')
 const inputJogador1Html = document.querySelector('.nome-jogador-1')
 const inputJogador2Html = document.querySelector('.nome-jogador-2')
 const inputJogador3Html = document.querySelector('.nome-jogador-3')
 const inputJogador4Html = document.querySelector('.nome-jogador-4')
 const botaoComecarHtml = document.querySelector('.botao-comecar')
+
+const secaoJogoHtml = document.querySelector('.card-jogo')
 
 //URL da página
 const urlDaPagina = document.URL
@@ -39,6 +42,6 @@ desabilitarInputsJogadores(quantidadeDeJogadores)
 
 //Botão começar
 botaoComecarHtml.addEventListener('click', () => {
-    secaoNomes.style.display = 'none'
-//Fazer a seção jogo ficar visivel
+    secaoNomesHtml.style.display = 'none'
+    secaoJogoHtml.style.display = 'flex'
 })

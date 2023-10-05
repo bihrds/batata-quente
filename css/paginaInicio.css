@@ -8,12 +8,11 @@
 }
 
 body {
-    background-image: url("./assets/FUNDO\ GERAL.jpg");
-    height: 100vh;
-    width: 100vw;
+    background-image: url("../assets/Fundo.jpg");
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-size: cover;
+    min-height: 100vh;
 
     display: flex;
     justify-content: center;
@@ -22,18 +21,31 @@ body {
 
 .card-inicial{
     height: 90vh;
-    width: 70vw;
     border-radius: 10px;
     background: #8F0F0F;
     box-shadow: 7px 7px 7px 10px #00000059;
+    width: calc(100vw - 180px);
     
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-    
+
+.container-titulo{
+    height: 30%;
+    background-image: url('../assets/batata-fogo.png');
+    background-position: bottom 100% left 50%;
+    background-size: 50%;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
 .tituloPrincipal{
+    align-self: flex-end;
     text-align: center;
     font-size: 50px;
     font-weight: 600;
@@ -61,7 +73,11 @@ h2{
     display: none;
 }
 
-.botao-modo{
+.container-quantidade{
+    display: none;
+}
+
+.botao-modo,.botao-quantidade{
     width: 170px;
     height: 50px;
     margin: 0 10px;
@@ -76,32 +92,14 @@ h2{
     color: #8F0F0F;
 }
 
-.quantidade{
-    width: 190px;
-    height: 40px;
-    border-radius: 10px;
-    margin: 5px 0px 50px 0px;
-    border: none;
-    background-color: #ffbe19;
-    color: #8F0F0F;
-    box-shadow: 10px 10px 30px #00000059;
-    cursor: pointer;
-    font-size: 24px;
-    font-weight: 500;
-    text-align: center;
-
-    display: none;
-}
-
-.quantidade:focus{
-    border: none;
-    outline: none;
+.botao-quantidade{
+    width: 60px;
 }
 
 .iniciarJogo{
     width: 280px;
-    height: 68px;
     margin-top: 20px;
+    padding: 10px 10px;
     border-radius: 10px;
     border: none;
     background-color: #ffbe19;
@@ -114,30 +112,34 @@ h2{
     text-align: center;
 }
 
-.botao-modo:hover, .iniciarJogo:hover{
+.botao-modo:hover, .iniciarJogo:hover, .botao-quantidade:hover, .botao-voltar:hover, .botao-comecar:hover{
     transform: scale(1.05);
     background: #8F0F0F;
     color: #ffbe19;
     border: solid 1px #ffbe19;
 }
 
-.selecionado{
+.selecionado,.iniciarJogo:active{
     background: #8F0F0F;
     color: #ffbe19;
     border: solid 1px #ffbe19;
 }
 
+.aviso{
+    color: #ffbe19;
+    font-size: 16px;
+    font-weight: 600;
+}
+
 @media (max-width: 840px) {
-    body{
-        height: 100%;
-        width: 100%;
-    }
     .card-inicial{
-        height: auto;
-        margin: 30px 0px;
+        width: calc(100vw - 60px);
+        height: calc(100% - 60px);
+        margin: 30px 0;
     }
     .tituloPrincipal{
         font-size: 30px;
+        margin-top: 50px;
     }
     .container-modo{
         display: flex;
@@ -145,5 +147,28 @@ h2{
         justify-content: center;
         flex-direction: column;
         gap: 10px;
+    }
+    .iniciarJogo{
+        width: 200px;
+        font-size: 30px;
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 380px) {
+    .card-inicial{
+        padding: 0px 40px;
+    }
+    h2{
+        font-size: 22px;
+    }
+    .botao-quantidade{
+        font-size: 20px;
+        height: 35px;
+        width: 35px;
+    }
+    .aviso{
+        font-size: 11px;
+        margin: 0 0 10px 0;
     }
 }

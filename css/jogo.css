@@ -104,3 +104,211 @@ main{
         margin: 30px 0;
     }
 }
+
+/* 2° parte */
+
+.card-jogo{
+    height: 90vh;
+    border-radius: 10px;
+    background: #8F0F0F;
+    box-shadow: 7px 7px 7px 10px #00000059;
+    width: calc(100% - 180px);
+    
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.container-nome-jogadores{
+    height: 80%;
+    width: calc(100%/3 - 100px);
+    border-radius: 10px;
+    background: #15244B;
+    box-shadow: inset 5px 5px 5px 8px #00000059;
+    margin-left: 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Jogadores{
+    height: calc(100% / 4);
+    width: calc(100% - 25px);
+    border-radius: 10px;
+    background: #3C5277;
+    box-shadow: 2px 2px 2px 6px #00000059;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 20px;
+    color: #ffbe19;
+}
+
+.container-batata-quente{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    
+    height: 80%;
+    width: calc(100%/3 - 20px);
+    padding: 30px 10px;
+}
+
+.espaco-letra-aleatoria{
+    position: relative;
+
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: #ffbe19 10px solid;
+}
+
+.letra-aleatoria{
+    position: absolute;
+    top: 45px;
+    left: 70px;
+    font-size: 60px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 1px 2px #ffbe19;
+}
+
+.batata{
+    position: absolute;
+    top: 45px;
+    left: -50px;
+    height: 50%;
+    width: 50%;
+    transform: rotate(-10deg);
+    animation: pulsando 1s ease-out infinite;
+}
+
+@keyframes pulsando {
+    100%{
+        transform: scale(1.2) rotate(-10deg);
+    }
+}
+
+.timer{
+    color: #fff;
+    font-size: 50px;
+}
+
+.input-palavra{
+    width: 100%;
+    height: 10%;
+    padding: 15px;
+    font-size: 32px;
+    border-radius: 10px;
+    background-color: #ffbe19;
+    color: #fff;
+    border: none;
+}
+
+.input-palavra:focus{
+    outline: none;
+    border: none;
+}
+
+.container-palavras-usadas{
+    height: 80%;
+    width: calc(100%/3 - 20px);
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; 
+    flex-direction: column;
+}
+
+h4{
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.palavras-usadas{
+    font-size: 16px;
+    color: #ffbe19;
+    text-decoration: line-through
+}
+
+@media (max-width: 1100px) {
+    .card-jogo{
+        width: calc(100% - 30px);
+    }
+    .Jogadores{
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 850px) {
+    .card-jogo{
+        width: calc(100% - 10px);
+    }
+    .Jogadores{
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .card-jogo{
+        width: 100%;
+        min-height: 100vh;
+        height: auto;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        border-radius: 0;
+        padding: 20px 0;
+    }
+    .container-nome-jogadores{
+        margin-left: 0;
+        width: calc(100%/2 - 40px);
+    }
+    .container-batata-quente{
+        width: calc(100%/2 - 20px);
+    }
+    .container-palavras-usadas{
+        width: calc(100% - 100px);
+
+    }
+    .Jogadores{
+        padding: 20px 0;
+        flex-direction: column;
+        font-size: 16px;
+    }
+    .espaco-letra-aleatoria{
+        position: relative;
+    
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        border: #ffbe19 10px solid;
+    }
+    
+    .letra-aleatoria{
+        top: 5px;
+        left: 25px;
+        font-size: 40px;
+    }
+    
+    .batata{
+        top: 15px;
+        left: -30px;
+    }
+
+    .timer{
+        font-size: 32px;
+    }
+    
+    .input-palavra{
+        font-size: 16px;
+        padding: 10px;
+    }
+}
+
