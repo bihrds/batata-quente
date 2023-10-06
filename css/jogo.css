@@ -352,18 +352,10 @@ h4{
         font-size: 16px;
     }
     .espaco-letra-aleatoria{
-        position: relative;
-    
         height: 100px;
         width: 100px;
         border-radius: 50%;
         border: #ffbe19 10px solid;
-    }
-    
-    .letra-aleatoria{
-        top: 5px;
-        left: 25px;
-        font-size: 40px;
     }
     
     .batata{

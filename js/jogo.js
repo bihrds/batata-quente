@@ -176,7 +176,7 @@ setInterval(()=>{
         //Verifica se o temop chegou a zero
         if(timerHtml.innerHTML == '0:00'){
             batataHtml.style.animation = 'explodindo 1s ease-out infinite'
-            setInterval(()=>{
+            setTimeout(()=>{
                 batataHtml.style.display = 'none'
             },1000)
             timerHtml.innerHTML = '0:00'
