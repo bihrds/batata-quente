@@ -42,6 +42,7 @@ const listaDePalavrasUsadasHtml = document.querySelector('.palavras-usadas')
 const avisoPalavraHtml = document.querySelector('.aviso-palavra')
 
 const secaoEsperarHtml = document.querySelector('.esperando-jogador')
+const esperarNomeJogadorHtml = document.querySelector('.esperar-nome-jogador')
 
 //URL da página
 const urlDaPagina = document.URL
@@ -79,13 +80,13 @@ inputJogador1Html.focus()
 //Função para validar o input
 const validarInputNome = (nomeJogador1,nomeJogador2,nomeJogador3,nomeJogador4) => {
     //pega a quantidade de jogadores e compara os inputs para ver se tem algum vazio, se tiver eu quero q de o valor false (falhou no teste), se não retorna true (passou no teste)
-    if(quantidadeDeJogadores == 1 && nomeJogador1 == ''){
+    if(quantidadeDeJogadores == 1 && (nomeJogador1.length == 0)){
         return false        
-    } else if (quantidadeDeJogadores == 2 && nomeJogador1 == '' && nomeJogador2 == ''){
+    } else if (quantidadeDeJogadores == 2 && (nomeJogador1.length == 0 && nomeJogador2.length == 0)){
         return false
-    } else if (quantidadeDeJogadores == 3 && nomeJogador1 == '' && nomeJogador2 == '' && nomeJogador3 == '' ) {
+    } else if (quantidadeDeJogadores == 3 && (nomeJogador1.length == 0 && nomeJogador2.length == 0 && nomeJogador3.length == 0 )) {
         return false
-    } else if (quantidadeDeJogadores == 4 && nomeJogador1 == '' && nomeJogador2 == '' && nomeJogador3 == '' && nomeJogador4 == '') {
+    } else if (quantidadeDeJogadores == 4 && (nomeJogador1.length == 0 && nomeJogador2.length == 0 && nomeJogador3.length == 0 && nomeJogador4.length == 0)) {
         return false
     } else {
         return true
@@ -120,11 +121,11 @@ let esperandoJogador = false
 
 //Botão começar
 botaoComecarHtml.addEventListener('click', () => {
-    //Pega os valores dos inputs
-    const nomeJogador1 = inputJogador1Html.value
-    const nomeJogador2 = inputJogador2Html.value
-    const nomeJogador3 = inputJogador3Html.value
-    const nomeJogador4 = inputJogador4Html.value
+    //Pega os valores dos inputs, .trim() para retirar os espaços vazios
+    const nomeJogador1 = inputJogador1Html.value.trim()
+    const nomeJogador2 = inputJogador2Html.value.trim()
+    const nomeJogador3 = inputJogador3Html.value.trim()
+    const nomeJogador4 = inputJogador4Html.value.trim()
 
     //Valida os inputs de nome do jogador
     if(!validarInputNome(nomeJogador1,nomeJogador2,nomeJogador3,nomeJogador4)){
@@ -135,10 +136,10 @@ botaoComecarHtml.addEventListener('click', () => {
     }
 
     //Coloca os nomes dos jogadores
-    nomeJogador1Html.innerHTML = nomeJogador1.trim()
-    nomeJogador2Html.innerHTML = nomeJogador2.trim()
-    nomeJogador3Html.innerHTML = nomeJogador3.trim()
-    nomeJogador4Html.innerHTML = nomeJogador4.trim()
+    nomeJogador1Html.innerHTML = nomeJogador1
+    nomeJogador2Html.innerHTML = nomeJogador2
+    nomeJogador3Html.innerHTML = nomeJogador3
+    nomeJogador4Html.innerHTML = nomeJogador4
     //Desabilita jogadores de acordo com a quantidade de jogadores selecionada
     desabilitarJogadores(quantidadeDeJogadores)
 
@@ -462,9 +463,9 @@ secaoJogoHtml.addEventListener('keydown',(e)=>{
 
             //verifica se está no modo versus
             if(modo == 'versus'){
-                ativarEsperarJogador()
                 atualizarIndexJogadorAtual()
                 selecionarJogador()
+                ativarEsperarJogador()
             }
         } else {
             //avisa o jogador que a palavra está incorreta
@@ -475,8 +476,25 @@ secaoJogoHtml.addEventListener('keydown',(e)=>{
 
 //Função para ativar a seção esperar jogador
 const ativarEsperarJogador = () => {
+    //Deixa a seção esperar visivel
     secaoEsperarHtml.style.display = 'flex'
+    //Coloca o nome do atual jogador a jogar
+    alterarNomeEsperarJogador(indexJogador)
+    //ativa o esperar jogador
     esperandoJogador = true
+}
+
+//Função para trocar o nome do jogador na espera
+const alterarNomeEsperarJogador = (index) =>{
+    if(index == 0){
+        esperarNomeJogadorHtml.innerHTML = nomeJogador1Html.innerHTML
+    } else if(index == 1){
+        esperarNomeJogadorHtml.innerHTML = nomeJogador2Html.innerHTML
+    } else if(index == 2){
+        esperarNomeJogadorHtml.innerHTML = nomeJogador3Html.innerHTML
+    } else if(index == 3){
+        esperarNomeJogadorHtml.innerHTML = nomeJogador4Html.innerHTML
+    }
 }
 
 //Adiciona o evento de click na secao para esperar o jogador
