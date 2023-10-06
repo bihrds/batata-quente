@@ -197,6 +197,40 @@ const adicionarJogadorPerdedor = (index) => {
     //Ordena a lista de menor para maior numero
     jogadoresPerderam.sort((a,b)=> a - b)
 }
+// Função para chamar terminarJogo com os nomes e pontuações dos jogadores
+function encerrarJogoQuandoNaoAtivo() {
+    // Obtém o nome e os pontos do jogador ativo.
+    const nomeJogadorAtivo = nomesJogadores[indexJogador];
+    const pontosJogadorAtivo = pontosJogadores[indexJogador];
+    
+    // Desabilita a div do jogo
+    secaoJogoHtml.style.display = 'none';
+
+    // Ativa a div da tela de resultados
+    const telaResultados = document.querySelector('.tela-resultados');
+    telaResultados.style.display = 'block';
+
+    // Atualize o conteúdo da tela de resultados com os valores dos pontos dos jogadores
+    const resultadoJogador1 = containerScoreJogador1Html.innerText;
+    const resultadoJogador2 = containerScoreJogador2Html.innerText;
+    const resultadoJogador3 = containerScoreJogador3Html.innerText;
+    const resultadoJogador4 = containerScoreJogador4Html.innerText;
+
+    // Agora, você pode atualizar a tela de resultados com esses valores.
+    // Por exemplo, você pode criar parágrafos ou divs para exibir esses valores.
+
+    const resultadoDiv = document.createElement('div');
+    resultadoDiv.innerHTML = `
+        <p>${nomeJogador1Html.textContent}: ${resultadoJogador1}</p>
+        <p>${nomeJogador2Html.textContent}: ${resultadoJogador2}</p>
+        <p>${nomeJogador3Html.textContent}: ${resultadoJogador3}</p>
+        <p>${nomeJogador4Html.textContent}: ${resultadoJogador4}</p>
+    `;
+
+    // Adicione o elemento de resultado à tela de resultados.
+    telaResultados.innerHTML = ''; // Limpa qualquer conteúdo anterior.
+    telaResultados.appendChild(resultadoDiv);
+}
 
 //Para fazer o timer funcionar
 setInterval(()=>{
@@ -208,7 +242,8 @@ setInterval(()=>{
     const verificarJogoAtivo = () => secaoJogoHtml.style.display == 'flex'
     //Verifica se jogo está ativo se não está ele acaba a função
     if(!verificarJogoAtivo()){
-        return
+        // Chama a função que encerra o jogo quando não estiver ativo
+        encerrarJogoQuandoNaoAtivo();
     } else {
         //pega tempo do html e subtrai ele
         const tempoRestante = parseInt(timerHtml.innerHTML)
