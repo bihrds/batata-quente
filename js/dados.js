@@ -173466,6 +173466,7 @@ ombreie
 ombreiem
 ombreies
 ombreio
+ombreira
 ombreou
 ombro
 ombros
@@ -238198,6 +238199,7 @@ umbilicais
 umbilical
 umbrais
 umbral
+umbu
 umbuzeiro
 umbuzeiros
 umedeca

@@ -24,13 +24,24 @@ const nomeJogador2Html = document.querySelector('.jogador2 p')
 const nomeJogador3Html = document.querySelector('.jogador3 p')
 const nomeJogador4Html = document.querySelector('.jogador4 p')
 
+const containerScoreJogador1Html = document.querySelector('.jogador1 .jogadores-score')
+const containerScoreJogador2Html = document.querySelector('.jogador2 .jogadores-score')
+const containerScoreJogador3Html = document.querySelector('.jogador3 .jogadores-score')
+const containerScoreJogador4Html = document.querySelector('.jogador4 .jogadores-score')
+
+const scoreJogador1Html = document.querySelector('.jogador1 .jogadores-score p')
+const scoreJogador2Html = document.querySelector('.jogador2 .jogadores-score p')
+const scoreJogador3Html = document.querySelector('.jogador3 .jogadores-score p')
+const scoreJogador4Html = document.querySelector('.jogador4 .jogadores-score p')
+
 const timerHtml = document.querySelector('.timer')
 const batataHtml = document.querySelector('.batata')
 const inputPalavraHtml = document.querySelector('.input-palavra')
 const letraAleatoriaHtml = document.querySelector('.letra-aleatoria')
 const listaDePalavrasUsadasHtml = document.querySelector('.palavras-usadas')
-const scoreHtml = document.querySelector('.jogadores-score p')
 const avisoPalavraHtml = document.querySelector('.aviso-palavra')
+
+const secaoEsperarHtml = document.querySelector('.esperando-jogador')
 
 //URL da página
 const urlDaPagina = document.URL
@@ -101,6 +112,12 @@ const desabilitarJogadores = (quantidadeDeJogadores) => {
     }
 }
 
+//Definições de variaveis globais
+let jogoAtivo = false
+let indexJogador = 0
+let jogadoresPerderam = []
+let esperandoJogador = false
+
 //Botão começar
 botaoComecarHtml.addEventListener('click', () => {
     //Pega os valores dos inputs
@@ -125,12 +142,27 @@ botaoComecarHtml.addEventListener('click', () => {
     //Desabilita jogadores de acordo com a quantidade de jogadores selecionada
     desabilitarJogadores(quantidadeDeJogadores)
 
-    //Desativa a seção do input jogadoeres e ativa o jogo
+    //Desativa a seção do input jogadoeres e ativa a seção do jogo
     secaoNomesHtml.style.display = 'none'
     secaoJogoHtml.style.display = 'flex'
+    
+    //Reseta a lista de palavras usadas
     listaDePalavrasUsadasHtml.innerHTML = ''
+    
+    //Reseta o tempo    
     definirTempo()
+
+    //Escolhe uma letra aleatoria
+    adicionarLetraAleatoria()
+
+    //Seta o foco no input da palavra
     inputPalavraHtml.focus()
+
+    //Seleciona o primeiro jogador
+    selecionarJogador()
+
+    //Seta o jogo como ativo
+    jogoAtivo = true
     
 })
 
@@ -141,18 +173,32 @@ const modo = urlDaPagina.substring(urlDaPagina.indexOf(parametroModo) + parametr
 //Define o tempo dependendo do modo
 const definirTempo = () =>{
     if(modo == 'contra-o-tempo'){
-        timerHtml.innerHTML = '1:00'
+        timerHtml.innerHTML = '60'
         return
     }
-    timerHtml.innerHTML = '0:10'
+    timerHtml.innerHTML = '10'
 }
 
-//Define o barulho de relógio
+//Define o barulho de relógio e barulho de perdeu o jogo
 const somTick = new Audio()
 somTick.src = '../assets/tick.mp3'
+const somBoom = new Audio()
+somBoom.src = '../assets/boom.mp3'
+
+//Função para adicionar jogador a lista de jogadores que perderam
+const adicionarJogadorPerdedor = (index) => {
+    //Adiciona o index atual na lista de jogadores que perderam
+    jogadoresPerderam.push(index)
+    //Ordena a lista de menor para maior numero
+    jogadoresPerderam.sort((a,b)=> a - b)
+}
 
 //Para fazer o timer funcionar
 setInterval(()=>{
+    //verifica se está esperando um jogador
+    if(esperandoJogador){
+        return
+    }
     //Função para verificar se o jogo está ativo
     const verificarJogoAtivo = () => secaoJogoHtml.style.display == 'flex'
     //Verifica se jogo está ativo se não está ele acaba a função
@@ -160,31 +206,79 @@ setInterval(()=>{
         return
     } else {
         //pega tempo do html e subtrai ele
-        const tempoRestante = parseInt(timerHtml.innerHTML.substring(2))
+        const tempoRestante = parseInt(timerHtml.innerHTML)
         const tempoSubtraido = tempoRestante - 1
+        //Verifica quanto tempo falta
         if (tempoRestante <= 3){
+            //Adiciona muita saturação a batata
             batataHtml.className= 'batata batata-fogo-queimando'
         } else if(tempoRestante <= 5){
+            //Adiciona pouco saturação a batata
             batataHtml.className= 'batata batata-fogo'
         } else if(tempoRestante <= 7) {
+            //deixa a batata pegando fogo
             batataHtml.src = '../assets/batata-fogo.png'
         } else {
+            //Volta a batata ao normar
             batataHtml.src = '../assets/batata-Sfogo.png'
             batataHtml.className = 'batata'
+            //Reseta a batata
+            batataHtml.style.display = 'block'
+            batataHtml.style.animation = 'pulsando 0.9s ease-out infinite'  
         }
 
         //Verifica se o temop chegou a zero
-        if(timerHtml.innerHTML == '0:00'){
+        if(timerHtml.innerHTML == '00'){
+            //para parar a função se batata estiver desativada
+            if(!jogoAtivo){
+                return
+            }
+            //adiciona a animação de explosão da batata
             batataHtml.style.animation = 'explodindo 1s ease-out infinite'
+            //Espera 900 ms para executar o que tem dentro
             setTimeout(()=>{
+                //toca o som de explosão
+                somBoom.play()
+                //Some com a batata
                 batataHtml.style.display = 'none'
-            },1000)
-            timerHtml.innerHTML = '0:00'
+            },900)
+            //Verifica o modo
+            if(modo != 'solo'){
+                //Adiciona o jogador a lista de perdedor
+                adicionarJogadorPerdedor(indexJogador)
+                //Verifica se ainda tem mais jogadores a jogar
+                if(jogadoresPerderam.length == quantidadeDeJogadores - 1){
+                    jogoAtivo = false
+                }else{
+                    //Ativa a seção esperar jogador
+                    //O setTimeout para dar o tempo da animação acontecer
+                    setTimeout(()=>{
+                        ativarEsperarJogador()
+                    }, 900)
+                    //Reseta o tempo 
+                    definirTempo()
+                    //Seleciona o proximo jogador
+                    atualizarIndexJogadorAtual()
+                    selecionarJogador()
+                    //Se for o modo contra o tempo reseta a lista de palavras usadas
+                    if(modo == 'contra-o-tempo'){
+                        listaDePalavrasUsadasHtml.innerHTML = ''
+                    }
+                }
+            } else {
+                //Seta para o modo solo o jogo ativo como false
+                jogoAtivo = false
+            }
         } else {
             //toca o som de tick
             somTick.play()
             //Coloca o temop subtraído no html
-            timerHtml.innerHTML = `0:0${tempoSubtraido}`
+            if(modo != 'contra-o-tempo'){
+                timerHtml.innerHTML = `0${tempoSubtraido}`
+            } else {
+                const tempoRestanteAtualString = tempoSubtraido.toString().length == 2 ? tempoSubtraido.toString() : `0${tempoSubtraido}`
+                timerHtml.innerHTML = tempoRestanteAtualString  
+            }
         }
     }
 }, 1000)
@@ -226,7 +320,6 @@ const validarPalavra = () => {
     const listaDePalavrasUsadas = listaDePalavrasUsadasHtml.innerHTML.split(' ')
     
     //Verifica se a palvra começa com a letra certa, existe no dicionário, e se ela está fora da lista de palavras usadas
-    console.log((palavraTratada[0]));
     if((palavraTratada[0] == letraAleatoria) && listaDePalavras.includes(palavraTratada) && !(listaDePalavrasUsadas.includes(palavraTratada))){
         return true
     } else {
@@ -236,9 +329,22 @@ const validarPalavra = () => {
 
 //Adiciona score
 const adicionarScore = () => {
-    const scoreAtual = parseInt(scoreHtml.innerHTML)
-    //Soma 1 ponto ao score atual
-    scoreHtml.innerHTML = `${scoreAtual + 1}`
+    //pega o score atual em número
+    const scoreAtualJogador1 = parseInt(scoreJogador1Html.innerHTML)
+    const scoreAtualJogador2 = parseInt(scoreJogador2Html.innerHTML)
+    const scoreAtualJogador3 = parseInt(scoreJogador3Html.innerHTML)
+    const scoreAtualJogador4 = parseInt(scoreJogador4Html.innerHTML)
+
+    //Verifica qual o jogador atual e soma um ponto de acordo com o index selecionado
+    if(indexJogador == 0){
+        scoreJogador1Html.innerHTML = `${scoreAtualJogador1 + 1}`
+    } else if(indexJogador == 1){
+        scoreJogador2Html.innerHTML = `${scoreAtualJogador2 + 1}`
+    } else if(indexJogador == 2){
+        scoreJogador3Html.innerHTML = `${scoreAtualJogador3 + 1}`
+    } else if(indexJogador == 3){
+        scoreJogador4Html.innerHTML = `${scoreAtualJogador4 + 1}`
+    } 
 }
 
 //Adicionar letra aleatoria
@@ -246,27 +352,141 @@ const adicionarLetraAleatoria = () => {
     const listaAlfabeto = 'abcdefghijlmnopqrstuvxz'.split('')
     //pega uma letra aleatoria da lista alfabeto
     const letraAleatoria = listaAlfabeto[Math.floor(Math.random() * listaAlfabeto.length)]
-    letraAleatoriaHtml.innerHTML = letraAleatoria
+    
+    //Para evitar letra repitida
+    if(letraAleatoriaHtml.innerHTML == letraAleatoria){
+        return adicionarLetraAleatoria()
+    } else {
+        letraAleatoriaHtml.innerHTML = letraAleatoria
+    }
 }
 
+//Selecionar o jogador de acordo com o index
+const selecionarJogador = () =>{
+    //Verifica qual o jogador atual de acordo com o index
+    if(indexJogador == 0){
+        //O jogador que tiver vez nas classes é o jogador selecionado atualmente
+        containerJogador1Html.className = 'Jogadores jogador1 jogadores-vez'
+        containerScoreJogador1Html.className = 'jogadores-score jogadores-score-vez'
+
+        containerJogador2Html.className = 'Jogadores jogador2'
+        containerScoreJogador2Html.className = 'jogadores-score'
+
+        containerJogador3Html.className = 'Jogadores jogador3'
+        containerScoreJogador3Html.className = 'jogadores-score'
+
+        containerJogador4Html.className = 'Jogadores jogador4'
+        containerScoreJogador4Html.className = 'jogadores-score'
+
+    } else if (indexJogador == 1){
+        containerJogador1Html.className = 'Jogadores jogador1'
+        containerScoreJogador1Html.className = 'jogadores-score'
+
+        containerJogador2Html.className = 'Jogadores jogador2 jogadores-vez'
+        containerScoreJogador2Html.className = 'jogadores-score jogadores-score-vez'
+
+        containerJogador3Html.className = 'Jogadores jogador3'
+        containerScoreJogador3Html.className = 'jogadores-score'
+
+        containerJogador4Html.className = 'Jogadores jogador4'
+        containerScoreJogador4Html.className = 'jogadores-score'
+
+    } else if (indexJogador == 2){
+        containerJogador1Html.className = 'Jogadores jogador1'
+        containerScoreJogador1Html.className = 'jogadores-score'
+
+        containerJogador2Html.className = 'Jogadores jogador2'
+        containerScoreJogador2Html.className = 'jogadores-score'
+
+        containerJogador3Html.className = 'Jogadores jogador3 jogadores-vez'
+        containerScoreJogador3Html.className = 'jogadores-score jogadores-score-vez'
+
+        containerJogador4Html.className = 'Jogadores jogador4'
+        containerScoreJogador4Html.className = 'jogadores-score'
+
+    } else if (indexJogador == 3){
+        containerJogador1Html.className = 'Jogadores jogador1'
+        containerScoreJogador1Html.className = 'jogadores-score'
+
+        containerJogador2Html.className = 'Jogadores jogador2'
+        containerScoreJogador2Html.className = 'jogadores-score'
+
+        containerJogador3Html.className = 'Jogadores jogador3'
+        containerScoreJogador3Html.className = 'jogadores-score'
+
+        containerJogador4Html.className = 'Jogadores jogador4 jogadores-vez'
+        containerScoreJogador4Html.className = 'jogadores-score jogadores-score-vez'
+
+    }
+}
+
+//Função para atualizar o index do jogador atual
+const atualizarIndexJogadorAtual = () => {
+    indexJogador++
+    if(jogadoresPerderam.includes(indexJogador)){
+        indexJogador++
+    } 
+    if(indexJogador >= quantidadeDeJogadores){
+        indexJogador = 0
+        if(jogadoresPerderam.includes(indexJogador)){
+            return atualizarIndexJogadorAtual()
+        } 
+    }
+}
 //Adiciona o evento de tecla no input
 secaoJogoHtml.addEventListener('keydown',(e)=>{
+    if(esperandoJogador){
+        return
+    }
+    //Verifica qual tecla foi pressionada
     if (e.key == 'Enter' || e.key == ' '){
+        //evita input vazio
         e.preventDefault()
+        //verifica se a palavra está válida
         if(validarPalavra()){
             //Adiciona a palavra na lista de palavras usadas
             listaDePalavrasUsadasHtml.innerHTML = `${listaDePalavrasUsadasHtml.innerHTML} ${inputPalavraHtml.value}`
             adicionarScore()
             adicionarLetraAleatoria()
+            
             //reseta o input
             inputPalavraHtml.value = ''
-            //reseta o tempo
-            definirTempo()
+            
+            //reseta o tempo se o modo não for o contra o tempo
+            if(modo != 'contra-o-tempo'){
+                definirTempo()
+            }
+            
             //desativa o aviso
             avisoPalavraHtml.style.display = 'none'
+
+            //verifica se está no modo versus
+            if(modo == 'versus'){
+                ativarEsperarJogador()
+                atualizarIndexJogadorAtual()
+                selecionarJogador()
+            }
         } else {
             //avisa o jogador que a palavra está incorreta
             avisoPalavraHtml.style.display = 'block'
         }
     }
 })
+
+//Função para ativar a seção esperar jogador
+const ativarEsperarJogador = () => {
+    secaoEsperarHtml.style.display = 'flex'
+    esperandoJogador = true
+}
+
+//Adiciona o evento de click na secao para esperar o jogador
+secaoEsperarHtml.addEventListener('click', () => {
+    //destiva a seção esperar
+    secaoEsperarHtml.style.display = 'none'
+    //Desativa o esperando jogador
+    esperandoJogador = false
+    //Reseta o input
+    inputPalavraHtml.value = ''
+    //Foca automaticamente no input palavra
+    inputPalavraHtml.focus()
+} )
