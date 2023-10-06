@@ -12,21 +12,22 @@
 <body>
     <main>
         <section class="card-nomes">
-            <a class="botao-voltar" href="./index.html">VOLTAR</a>
-
-            <button class="botao-comecar">COMEÇAR</button>
-            
             <div class="container-titulo">
                 <h1 class="tituloPrincipal">Batata<br>Quente<br></h1>
             </div>
-
-            <div class="container-jogadores">
-                <input class="input-jogadores nome-jogador-1" type="text" maxlength="25" minlength="2" placeholder="Jogador 1">
-                <input class="input-jogadores nome-jogador-2" type="text" maxlength="25" minlength="2" placeholder="Jogador 2">
-                <input class="input-jogadores nome-jogador-3" type="text" maxlength="25" minlength="2" placeholder="Jogador 3">
-                <input class="input-jogadores nome-jogador-4" type="text" maxlength="25" minlength="2" placeholder="Jogador 4">
-            </div>
             
+            <div class="container-jogadores">
+                <p class="instrucao-nomes">Insira o nome dos jogadores</p>
+                <input class="input-jogadores nome-jogador-1" type="text" maxlength="25" minlength="2" placeholder="Jogador 1" tabindex="1">
+                <input class="input-jogadores nome-jogador-2" type="text" maxlength="25" minlength="2" placeholder="Jogador 2" tabindex="2">
+                <input class="input-jogadores nome-jogador-3" type="text" maxlength="25" minlength="2" placeholder="Jogador 3" tabindex="3">
+                <input class="input-jogadores nome-jogador-4" type="text" maxlength="25" minlength="2" placeholder="Jogador 4" tabindex="4">
+                <p class="aviso-nome-jogador">*Digite um nome para os jogadores</p>
+            </div>
+
+            <button class="botao-comecar" tabindex="5">COMEÇAR</button>
+            <a class="botao-voltar" href="./index.html" tabindex="6">VOLTAR</a>
+
         </section>
 
 
@@ -66,6 +67,7 @@
                 </div>
                 <p class="timer">00:00</p>
                 <input class="input-palavra" type="text" placeholder="insira a palavra aqui">
+                <p class="aviso-palavra">*Essa palavra já foi usada ou não existe</p>
             </div>
 
             <div class="container-palavras-usadas">
@@ -74,6 +76,6 @@
             </div>
         </section>
     </main>
-    <script src="./js/jogo.js"></script>
+    <script type="module" src="./js/jogo.js"></script>
 </body>
 </html>

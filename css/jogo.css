@@ -62,6 +62,13 @@ main{
     max-width: 300px;
 }
 
+.instrucao-nomes{
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+
+}
+ 
 .input-jogadores{
     padding: 10px;
     width: calc(100% - 40px);
@@ -87,6 +94,13 @@ main{
 .input-jogadores:focus{
     outline: none;
     transform: scale(1.05);
+}
+
+.aviso-nome-jogador{
+    font-size: 16px;
+    color: #ffbe19;
+    text-align: center;
+    display: none;
 }
 
 @media (max-width: 500px) {
@@ -184,12 +198,14 @@ main{
 
 .letra-aleatoria{
     position: absolute;
-    top: 45px;
-    left: 70px;
+    top: 50%;
+    left: 50%;
     font-size: 60px;
     font-weight: 600;
     color: #fff;
     text-shadow: 1px 2px #ffbe19;
+    transform: translate(-50%,-50%);
+    text-transform: uppercase
 }
 
 .batata{
@@ -199,13 +215,28 @@ main{
     height: 50%;
     width: 50%;
     transform: rotate(-10deg);
-    animation: pulsando 1s ease-out infinite;
+    object-fit: contain;
+    animation: pulsando 0.9s ease-out infinite;
+}
+
+.batata-fogo{
+    filter: saturate(200%);
+}
+
+.batata-fogo-queimando{
+    filter: saturate(400%);
 }
 
 @keyframes pulsando {
     100%{
         transform: scale(1.2) rotate(-10deg);
     }
+}
+
+@keyframes explodindo {
+    100%{
+        transform: scale(1.5) rotate(-10deg);
+    }   
 }
 
 .timer{
@@ -231,6 +262,12 @@ main{
 .input-palavra:focus{
     outline: none;
     border: none;
+}
+
+.aviso-palavra{
+    color: #ffbe19;
+    font-size: 16px;
+    display: none;
 }
 
 .container-palavras-usadas{
@@ -280,6 +317,12 @@ h4{
     }
     .container-nome-jogadores{
         height: auto;
+    }
+    .aviso-palavra{
+        font-size: 12px;
+    }
+    .input-palavra::placeholder{
+        font-size: 12px;
     }
 }
 
