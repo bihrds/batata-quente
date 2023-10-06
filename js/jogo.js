@@ -4,6 +4,7 @@ import { listaDePalavras } from "./dados.js";
 //Definições de constantes, que referenciam os elementos HTML
 const bodyHtml = document.querySelector('body')
 
+//Elementos da seção nomes
 const secaoNomesHtml = document.querySelector('.card-nomes')
 const inputJogador1Html = document.querySelector('.nome-jogador-1')
 const inputJogador2Html = document.querySelector('.nome-jogador-2')
@@ -12,6 +13,7 @@ const inputJogador4Html = document.querySelector('.nome-jogador-4')
 const avisoNomeJogadorHtml = document.querySelector('.aviso-nome-jogador')
 const botaoComecarHtml = document.querySelector('.botao-comecar')
 
+//Elementos da seção jogo
 const secaoJogoHtml = document.querySelector('.card-jogo')
 
 const containerJogador1Html = document.querySelector('.jogador1')
@@ -41,6 +43,7 @@ const letraAleatoriaHtml = document.querySelector('.letra-aleatoria')
 const listaDePalavrasUsadasHtml = document.querySelector('.palavras-usadas')
 const avisoPalavraHtml = document.querySelector('.aviso-palavra')
 
+//Elementos da seção esperar jogador
 const secaoEsperarHtml = document.querySelector('.esperando-jogador')
 const esperarNomeJogadorHtml = document.querySelector('.esperar-nome-jogador')
 
@@ -53,6 +56,7 @@ const quantidadeDeJogadores = urlDaPagina.substring(urlDaPagina.indexOf(parametr
 
 //Função que desabilita os inputs
 const desabilitarInputsJogadores = (quantidadeDeJogadores) => {
+    //Verifica a quantidade de jogadores passado na url e desabilita os inputs de acordo com ela
     if(quantidadeDeJogadores == 1){
         inputJogador2Html.style.display = 'none'
         inputJogador3Html.style.display = 'none'
@@ -66,7 +70,7 @@ const desabilitarInputsJogadores = (quantidadeDeJogadores) => {
         inputJogador4Html.style.display = 'none'
     }
     else {
-        //O return está sendo usado apenas para indicar que a função acaba
+        //O return está sendo usado para que a função acabe
         return
     }
 }
@@ -230,7 +234,7 @@ setInterval(()=>{
 
         //Verifica se o temop chegou a zero
         if(timerHtml.innerHTML == '00'){
-            //para parar a função se batata estiver desativada
+            //Para a função se o jogo estiver desativado
             if(!jogoAtivo){
                 return
             }
