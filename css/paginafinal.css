@@ -1,0 +1,98 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Mitr',sans-serif;
+}
+
+.tituloPrincipal{
+    align-self: flex-end;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 800;
+    color: white;
+    text-shadow: 1px 1px #ffbe19;
+    line-height: 0.7;
+    letter-spacing: 3px;
+    margin-bottom: 15%;
+}
+
+body {
+    background-image: url("../assets/Fundo.jpg");
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-inicial{
+    height: 90vh;
+    border-radius: 10px;
+    background: #8F0F0F;
+    box-shadow: 7px 7px 7px 10px #00000059;
+    width: calc(100vw - 180px);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-vencedor{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.primeiroLugar{
+    border-radius: 10px;
+    background: #FFBE19;
+    box-shadow: 7px 7px 7px 10px #00000059;
+    height: 70vh;
+    width: 50vh;
+}
+
+.segundoLugar{
+    border-radius: 10px;
+    background: #FFBE19;
+    box-shadow: 7px 7px 7px 10px #00000059;
+    height: 60vh;
+    width: 50vh;
+    margin-top: 6%;
+}
+
+.terceiroLugar{
+    border-radius: 10px;
+    background: #FFBE19;
+    box-shadow: 7px 7px 7px 10px #00000059;
+    height: 50vh;
+    width: 50vh;
+    margin-top: 13%;
+}
+
+.posição{
+    text-align: center;
+    font-size: 50px;
+    font-weight: 800;
+    color: #8F0F0F;
+    text-shadow: 1px 1px #8F0F0F;
+    line-height: 0.8;
+    letter-spacing: 3px;
+}
+
+.primeiro{
+    margin-bottom: 90%;
+}
+
+.segundo{
+    margin-bottom: 80%;
+}
+
+.terceiro{
+    margin-bottom: 70%;
+}
