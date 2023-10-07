@@ -264,17 +264,6 @@ function encerrarJogoQuandoNaoAtivo() {
     } else if (quantidadeDeJogadores == 2) {
         //Desativa o pódio e só deixa o primeiro e segundo lugar
         containerTerceiroLugarHtml.style.display = 'none';
-        labelPrimeiroLugarHtml.style.display = 'none';
-        labelSegundoLugarHtml.style.display = 'none';
-
-
-        //Os conteiners de segundo e primeiro lugar ficam do mesmo tamanho e alinham o conteudo no centro
-        containerPrimeiroLugarHtml.style.width = 'calc(50% - 20px)';
-        containerPrimeiroLugarHtml.style.justifyContent = 'center';
-
-        containerSegundoLugarHtml.style.width = 'calc(50% - 20px)';
-        containerSegundoLugarHtml.style.justifyContent = 'center';
-        containerSegundoLugarHtml.style.height = '100%';
     }
 }
 
