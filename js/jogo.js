@@ -47,6 +47,23 @@ const avisoPalavraHtml = document.querySelector('.aviso-palavra')
 const secaoEsperarHtml = document.querySelector('.esperando-jogador')
 const esperarNomeJogadorHtml = document.querySelector('.esperar-nome-jogador')
 
+//Elementos da seção resultado
+const secaoResultadoHtml = document.querySelector('.secao-resultado')
+
+const containerPrimeiroLugarHtml = document.querySelector('.primeiro-lugar')
+const containerSegundoLugarHtml = document.querySelector('.segundo-lugar')
+const containerTerceiroLugarHtml = document.querySelector('.terceiro-lugar')
+
+const nomePrimeiroLugarHtml = document.querySelector('.primeiro-lugar .resultado-jogador-nome')
+const nomeSegundoLugarHtml = document.querySelector('.segundo-lugar .resultado-jogador-nome')
+const nomeTerceiroLugarHtml = document.querySelector('.terceiro-lugar .resultado-jogador-nome')
+
+const scorePrimeiroLugarHtml = document.querySelector('.primeiro-lugar .resultado-score')
+const scoreSegundoLugarHtml = document.querySelector('.segundo-lugar .resultado-score')
+const scoreTerceiroLugarHtml = document.querySelector('.terceiro-lugar .resultado-score')
+
+const labelPrimeiroLugarHtml = document.querySelector('.primeiro')
+
 //URL da página
 const urlDaPagina = document.URL
 
@@ -199,37 +216,33 @@ const adicionarJogadorPerdedor = (index) => {
 }
 // Função para chamar terminarJogo com os nomes e pontuações dos jogadores
 function encerrarJogoQuandoNaoAtivo() {
-    // Obtém o nome e os pontos do jogador ativo.
-    const nomeJogadorAtivo = nomesJogadores[indexJogador];
-    const pontosJogadorAtivo = pontosJogadores[indexJogador];
-    
     // Desabilita a div do jogo
     secaoJogoHtml.style.display = 'none';
 
     // Ativa a div da tela de resultados
-    const telaResultados = document.querySelector('.tela-resultados');
-    telaResultados.style.display = 'block';
+    secaoResultadoHtml.style.display = 'block';
 
     // Atualize o conteúdo da tela de resultados com os valores dos pontos dos jogadores
-    const resultadoJogador1 = containerScoreJogador1Html.innerText;
-    const resultadoJogador2 = containerScoreJogador2Html.innerText;
-    const resultadoJogador3 = containerScoreJogador3Html.innerText;
-    const resultadoJogador4 = containerScoreJogador4Html.innerText;
+    const resultadoJogador1 = scoreJogador1Html.innerHTML;
+    const resultadoJogador2 = scoreJogador2Html.innerHTML;
+    const resultadoJogador3 = scoreJogador3Html.innerHTML;
+    const resultadoJogador4 = scoreJogador4Html.innerHTML;
 
-    // Agora, você pode atualizar a tela de resultados com esses valores.
-    // Por exemplo, você pode criar parágrafos ou divs para exibir esses valores.
+    let listaResultaodoJogadores = []
 
-    const resultadoDiv = document.createElement('div');
-    resultadoDiv.innerHTML = `
-        <p>${nomeJogador1Html.textContent}: ${resultadoJogador1}</p>
-        <p>${nomeJogador2Html.textContent}: ${resultadoJogador2}</p>
-        <p>${nomeJogador3Html.textContent}: ${resultadoJogador3}</p>
-        <p>${nomeJogador4Html.textContent}: ${resultadoJogador4}</p>
-    `;
+    if(quantidadeDeJogadores == 1){
+        containerSegundoLugarHtml.style.display = 'none'
+        containerTerceiroLugarHtml.style.display = 'none'
+        labelPrimeiroLugarHtml.style.display = 'none'
 
-    // Adicione o elemento de resultado à tela de resultados.
-    telaResultados.innerHTML = ''; // Limpa qualquer conteúdo anterior.
-    telaResultados.appendChild(resultadoDiv);
+        containerPrimeiroLugarHtml.style.width = '50%'
+        containerPrimeiroLugarHtml.style.justifyContent = 'center'
+
+        nomePrimeiroLugarHtml.innerHTML = nomeJogador1Html.innerHTML
+        scorePrimeiroLugarHtml.innerHTML = resultadoJogador1
+    } else if(quantidadeDeJogadores == 2){
+        //Ajeita de acordo com a quantidade
+    }
 }
 
 //Para fazer o timer funcionar
@@ -240,10 +253,13 @@ setInterval(()=>{
     }
     //Função para verificar se o jogo está ativo
     const verificarJogoAtivo = () => secaoJogoHtml.style.display == 'flex'
-    //Verifica se jogo está ativo se não está ele acaba a função
     if(!verificarJogoAtivo()){
-        // Chama a função que encerra o jogo quando não estiver ativo
-        encerrarJogoQuandoNaoAtivo();
+        return
+    }
+    //Verifica se jogo está ativo se não está ele acaba a função
+    if(!jogoAtivo){
+        encerrarJogoQuandoNaoAtivo()
+        return
     } else {
         //pega tempo do html e subtrai ele
         const tempoRestante = parseInt(timerHtml.innerHTML)
@@ -269,10 +285,6 @@ setInterval(()=>{
 
         //Verifica se o temop chegou a zero
         if(timerHtml.innerHTML == '00'){
-            //Para a função se o jogo estiver desativado
-            if(!jogoAtivo){
-                return
-            }
             //adiciona a animação de explosão da batata
             batataHtml.style.animation = 'explodindo 1s ease-out infinite'
             //Espera 900 ms para executar o que tem dentro

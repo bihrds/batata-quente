@@ -8,12 +8,15 @@
     <title>Batata Quente</title>
     <link rel="stylesheet" href="./css/paginaInicio.css">
     <link rel="stylesheet" href="./css/jogo.css">
+    <link rel="stylesheet" href="./css/paginafinal.css">
 </head>
 <body>
     <main>
         <section class="card-nomes">
             <div class="container-titulo">
-                <h1 class="tituloPrincipal">Batata<br>Quente<br></h1>
+                <h1 class="tituloPrincipal">Batata<br>Quente<br>
+                    <img src="./assets/batata-fogo.png" alt="Batata logo">
+                </h1>
             </div>
             
             <div class="container-jogadores">
@@ -75,16 +78,43 @@
                 <p class="palavras-usadas">aqui estao palavras de exemplo para ter uma ideia como ficará ao comecar o jogo</p>
             </div>
         </section>
+
+        <section class="secao-resultado">
+            <div class="container-titulo">
+                <img src="./assets/batata-fogo.png" alt="Batata logo">
+                <h1 class="tituloPrincipal">Batata<br>Quente<br></h1>
+            </div>
+    
+            <div class="container-resultado">
+                <div class="card-resultado terceiro-lugar">
+                    <h3 class="posicao terceiro"><span class="colocacao">3º</span><br>LUGAR</h3>
+                    <p class="resultado-jogador-nome"></p>
+                    <h3 class="label-score">SCORE:</h3>
+                    <p class="resultado-score"></p>
+                </div>
+                <div class="card-resultado primeiro-lugar">
+                    <h3 class="posicao primeiro"><span class="colocacao">1º</span><br>LUGAR</h3>
+                    <p class="resultado-jogador-nome"></p>
+                    <h3 class="label-score">SCORE:</h3>
+                    <p class="resultado-score"></p>
+                </div>
+                <div class="card-resultado segundo-lugar">
+                    <h3 class="posicao"><span class="colocacao">2º</span><br>LUGAR</h3>
+                    <p class="resultado-jogador-nome"></p>
+                    <h3 class="label-score">SCORE:</h3>
+                    <p class="resultado-score"></p>
+                </div>
+            </div>
+    
+            <button class="botao-reniciar-jogo">RENICIAR</button>
+            <a class="botao-voltar-modos" href="./index.html">MODOS</a>
+    
+        </section>
     </main>
     <section class="esperando-jogador">
         <p>Vez do(a) <span class="esperar-nome-jogador"></span></p>
         <img src="./assets/botaoEsperar.png" alt="Botao vermelho" class="botao-esperar">
         <p>clique na tela para continuar</p>
-    </section>
-    <!-- ESTÁ DESATIVADA PELO CSS -->
-    <section class="mostrar-resultado">
-        <p class="ganhador"></p>
-        <button class="botao-reniciar-jogo">RENICIAR</button>
     </section>
     <script type="module" src="./js/jogo.js"></script>
 </body>

@@ -1,98 +1,121 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Mitr',sans-serif;
-}
 
-.tituloPrincipal{
-    align-self: flex-end;
-    text-align: center;
-    font-size: 50px;
-    font-weight: 800;
-    color: white;
-    text-shadow: 1px 1px #ffbe19;
-    line-height: 0.7;
-    letter-spacing: 3px;
-    margin-bottom: 15%;
-}
-
-body {
-    background-image: url("../assets/Fundo.jpg");
-    background-position: center;
-    background-repeat: repeat-y;
-    background-size: cover;
-    min-height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.card-inicial{
+.secao-resultado{
     height: 90vh;
     border-radius: 10px;
     background: #8F0F0F;
     box-shadow: 7px 7px 7px 10px #00000059;
     width: calc(100vw - 180px);
+    padding: 10px;
     
-    display: flex;
-    justify-content: center;
+    display: none;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
+    
+    position: relative;
 }
 
-.container-vencedor{
+.container-resultado{
     display: flex;
-    justify-content:center;
-    align-items: center;
+    justify-content: space-around;
+    align-items: flex-end;
     flex-direction: row;
+
+    height: 70%;
+    width: 100%;
 }
 
-.primeiroLugar{
+.card-resultado{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: calc((100%/3) - 20px);
     border-radius: 10px;
+    padding: 20px 0;
     background: #FFBE19;
-    box-shadow: 7px 7px 7px 10px #00000059;
-    height: 70vh;
-    width: 50vh;
 }
 
-.segundoLugar{
-    border-radius: 10px;
-    background: #FFBE19;
-    box-shadow: 7px 7px 7px 10px #00000059;
-    height: 60vh;
-    width: 50vh;
-    margin-top: 6%;
+.primeiro-lugar{
+    height: 100%;
 }
 
-.terceiroLugar{
-    border-radius: 10px;
-    background: #FFBE19;
-    box-shadow: 7px 7px 7px 10px #00000059;
-    height: 50vh;
-    width: 50vh;
-    margin-top: 13%;
+.segundo-lugar{
+    height: 80%;
 }
 
-.posição{
+.terceiro-lugar{
+    height: 50%;
+}
+
+.posicao, .label-score, .resultado-jogador-nome, .resultado-score{
     text-align: center;
-    font-size: 50px;
-    font-weight: 800;
+    font-size: 30px;
+    font-weight: 500;
     color: #8F0F0F;
     text-shadow: 1px 1px #8F0F0F;
     line-height: 0.8;
     letter-spacing: 3px;
 }
 
-.primeiro{
-    margin-bottom: 90%;
+.posicao span{
+    font-size: 60px;
+    font-weight: 800;
 }
 
-.segundo{
-    margin-bottom: 80%;
+.label-score, .resultado-score{
+    margin: 10px 0;
+    color: #3C5277;
 }
 
-.terceiro{
-    margin-bottom: 70%;
+.botao-reniciar-jogo, .botao-voltar-modos{
+    position: absolute;
+
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #ffbe19;
+    box-shadow: 10px 10px 30px #00000059;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: 0.5s;
+    color: #8F0F0F;
+}
+
+.botao-reniciar-jogo{
+    top: 10px;
+    right: 10px;
+}
+
+.botao-voltar-modos{
+    top: 10px;
+    left: 10px;
+}
+
+@media (max-width: 840px) {
+    .secao-resultado{
+        width: 100vw;
+        min-height: 100vh;
+        border-radius: 0;
+        padding: 30px 0;
+    }
+    
+    .posicao, .label-score{
+        font-size: 16px;
+    }
+    
+    .posicao span{
+        font-size: 30px;
+        font-weight: 800;
+    }
+    
+    .card-resultado{
+        width: calc((100%/3) - 10px);
+    }
+
+    .container-resultado{
+        height: 50%;
+    }
 }

@@ -344,7 +344,6 @@ h4{
         flex-wrap: wrap;
         justify-content: space-around;
         border-radius: 0;
-        padding: 20px 0;
     }
     .container-nome-jogadores{
         margin-left: 0;
@@ -405,10 +404,4 @@ h4{
     height: 200px;
     width: 200px;
     object-fit: contain;
-}
-
-/* Estilos para a seção resultados */
-
-.mostrar-resultado{
-    display: none;
 }
