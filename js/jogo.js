@@ -237,6 +237,29 @@ function atualizarPodium(scoreJogador1, nomeJogador1, scoreJogador2, nomeJogador
     nomeTerceiroLugar = jogadores[2].nome;
     scoreTerceiroLugar = jogadores[2].score;
   }
+
+  //Função para mostrar nome e score do jogador no modo solo
+
+  const resultadoJogador1 = scoreJogador1Html.innerHTML;
+  const resultadoJogador2 = scoreJogador2Html.innerHTML;
+  const resultadoJogador3 = scoreJogador3Html.innerHTML
+  const resultadoJogador4 = scoreJogador4Html.innerHTML
+
+  let listaResultaodoJogadores = []
+
+  if(quantidadeDeJogadores == 1){
+    containerSegundoLugarHtml.style.display = 'none'
+    containerTerceiroLugarHtml.style.display = 'none'
+    labelPrimeiroLugarHtml.style.display = 'none'
+
+    containerPrimeiroLugarHtml.style.width = '50%'
+    containerPrimeiroLugarHtml.style.justifyContent = 'center'
+
+    nomePrimeiroLugarHtml.innerHTML = nomeJogador1Html.innerHTML
+    scorePrimeiroLugarHtml.innerHTML = resultadoJogador1
+    } else if(quantidadeDeJogadores ==2){
+        //Ajeita de acordo com a quantidade
+  }
   
 // Função para chamar terminarJogo com os nomes e pontuações dos jogadores
 function encerrarJogoQuandoNaoAtivo() {
@@ -318,7 +341,7 @@ setInterval(()=>{
             batataHtml.style.animation = 'pulsando 0.9s ease-out infinite'  
         }
 
-        //Verifica se o temop chegou a zero
+        //Verifica se o tempo chegou a zero
         if(timerHtml.innerHTML == '00'){
             //adiciona a animação de explosão da batata
             batataHtml.style.animation = 'explodindo 1s ease-out infinite'
