@@ -63,6 +63,10 @@ const scoreSegundoLugarHtml = document.querySelector('.segundo-lugar .resultado-
 const scoreTerceiroLugarHtml = document.querySelector('.terceiro-lugar .resultado-score')
 
 const labelPrimeiroLugarHtml = document.querySelector('.primeiro')
+const labelSegundoLugarHtml = document.querySelector('.segundo')
+
+const botaoReniciarHtml = document.querySelector('.botao-reniciar-jogo')
+
 
 //URL da página
 const urlDaPagina = document.URL
@@ -116,6 +120,7 @@ const validarInputNome = (nomeJogador1,nomeJogador2,nomeJogador3,nomeJogador4) =
 
 //Função para corrigir a quantidade de jogadores de acordo com a quantidade selecionada
 const desabilitarJogadores = (quantidadeDeJogadores) => {
+    //verifica a quantidade
     if(quantidadeDeJogadores == 1){
         containerJogador2Html.style.display = 'none'
         containerJogador3Html.style.display = 'none'
@@ -211,56 +216,11 @@ somBoom.src = '../assets/boom.mp3'
 const adicionarJogadorPerdedor = (index) => {
     //Adiciona o index atual na lista de jogadores que perderam
     jogadoresPerderam.push(index)
+
     //Ordena a lista de menor para maior numero
     jogadoresPerderam.sort((a,b)=> a - b)
 }
-// Função para chamar terminarJogo com os nomes e pontuações dos jogadores
-function atualizarPodium(scoreJogador1, nomeJogador1, scoreJogador2, nomeJogador2, scoreJogador3, nomeJogador3, scoreJogador4, nomeJogador4) {
-    // Crie um array de objetos para representar os jogadores com seus nomes e pontuações
-    const jogadores = [
-      { nome: nomeJogador1, score: scoreJogador1 },
-      { nome: nomeJogador2, score: scoreJogador2 },
-      { nome: nomeJogador3, score: scoreJogador3 },
-      { nome: nomeJogador4, score: scoreJogador4 }
-    ];
-  
-    // Ordene os jogadores com base nas pontuações em ordem decrescente
-    jogadores.sort((a, b) => b.score - a.score);
-  
-    // Atribua os nomes e pontuações aos jogadores no pódio
-    nomePrimeiroLugar = jogadores[0].nome;
-    scorePrimeiroLugar = jogadores[0].score;
-  
-    nomeSegundoLugar = jogadores[1].nome;
-    scoreSegundoLugar = jogadores[1].score;
-  
-    nomeTerceiroLugar = jogadores[2].nome;
-    scoreTerceiroLugar = jogadores[2].score;
-  }
 
-  //Função para mostrar nome e score do jogador no modo solo
-
-  const resultadoJogador1 = scoreJogador1Html.innerHTML;
-  const resultadoJogador2 = scoreJogador2Html.innerHTML;
-  const resultadoJogador3 = scoreJogador3Html.innerHTML
-  const resultadoJogador4 = scoreJogador4Html.innerHTML
-
-  let listaResultaodoJogadores = []
-
-  if(quantidadeDeJogadores == 1){
-    containerSegundoLugarHtml.style.display = 'none'
-    containerTerceiroLugarHtml.style.display = 'none'
-    labelPrimeiroLugarHtml.style.display = 'none'
-
-    containerPrimeiroLugarHtml.style.width = '50%'
-    containerPrimeiroLugarHtml.style.justifyContent = 'center'
-
-    nomePrimeiroLugarHtml.innerHTML = nomeJogador1Html.innerHTML
-    scorePrimeiroLugarHtml.innerHTML = resultadoJogador1
-    } else if(quantidadeDeJogadores ==2){
-        //Ajeita de acordo com a quantidade
-  }
-  
 // Função para chamar terminarJogo com os nomes e pontuações dos jogadores
 function encerrarJogoQuandoNaoAtivo() {
     // Desabilita a div do jogo
@@ -269,37 +229,52 @@ function encerrarJogoQuandoNaoAtivo() {
     // Ativa a div da tela de resultados
     secaoResultadoHtml.style.display = 'block';
     
-    atualizarPodium(
-        scoreJogador1Html,
-        nomeJogador1Html.innerHTML,
-        scoreJogador2Html,
-        nomeJogador2Html.innerHTML,
-        scoreJogador3Html,
-        nomeJogador3Html.innerHTML,
-        scoreJogador4Html,
-        nomeJogador4Html.innerHTML
-      );
+    // Crie um array de objetos para representar os jogadores com seus nomes e pontuações
+    const jogadores = [
+        { nome: nomeJogador1Html.innerHTML, score: scoreJogador1Html.innerHTML },
+        { nome: nomeJogador2Html.innerHTML, score: scoreJogador2Html.innerHTML },
+        { nome: nomeJogador3Html.innerHTML, score: scoreJogador3Html.innerHTML },
+        { nome: nomeJogador4Html.innerHTML, score: scoreJogador4Html.innerHTML }
+    ];
+    
+    // Ordene os jogadores com base nas pontuações em ordem decrescente
+    jogadores.sort((a, b) => b.score - a.score);
+    
+    // Atribua os nomes e pontuações aos jogadores no pódio
+    nomePrimeiroLugarHtml.innerHTML = jogadores[0].nome;
+    scorePrimeiroLugarHtml.innerHTML = jogadores[0].score;
 
-    // Desabilite os inputs dos jogadores
-    inputJogador1Html.disabled = true;
-    inputJogador2Html.disabled = true;
-    inputJogador3Html.disabled = true;
-    inputJogador4Html.disabled = true;
+    nomeSegundoLugarHtml.innerHTML = jogadores[1].nome;
+    scoreSegundoLugarHtml.innerHTML = jogadores[1].score;
 
-    let listaResultaodoJogadores = [];
+    nomeTerceiroLugarHtml.innerHTML = jogadores[2].nome;
+    scoreTerceiroLugarHtml.innerHTML = jogadores[2].score;
 
+    //verifica a quantidade
     if (quantidadeDeJogadores == 1) {
+        //Desativa o podio e só deixa o primeiro lugar
         containerSegundoLugarHtml.style.display = 'none';
         containerTerceiroLugarHtml.style.display = 'none';
         labelPrimeiroLugarHtml.style.display = 'none';
 
+        //Container primeiro lugar fica maior e alinha os items dentro dele para o centro
         containerPrimeiroLugarHtml.style.width = '50%';
         containerPrimeiroLugarHtml.style.justifyContent = 'center';
 
-        nomePrimeiroLugarHtml.innerHTML = nomePrimeiroLugar;
-        scorePrimeiroLugarHtml.innerHTML = scorePrimeiroLugar;
     } else if (quantidadeDeJogadores == 2) {
+        //Desativa o pódio e só deixa o primeiro e segundo lugar
+        containerTerceiroLugarHtml.style.display = 'none';
+        labelPrimeiroLugarHtml.style.display = 'none';
+        labelSegundoLugarHtml.style.display = 'none';
 
+
+        //Os conteiners de segundo e primeiro lugar ficam do mesmo tamanho e alinham o conteudo no centro
+        containerPrimeiroLugarHtml.style.width = 'calc(50% - 20px)';
+        containerPrimeiroLugarHtml.style.justifyContent = 'center';
+
+        containerSegundoLugarHtml.style.width = 'calc(50% - 20px)';
+        containerSegundoLugarHtml.style.justifyContent = 'center';
+        containerSegundoLugarHtml.style.height = '100%';
     }
 }
 
@@ -322,23 +297,44 @@ setInterval(()=>{
         //pega tempo do html e subtrai ele
         const tempoRestante = parseInt(timerHtml.innerHTML)
         const tempoSubtraido = tempoRestante - 1
-        //Verifica quanto tempo falta
-        if (tempoRestante <= 3){
-            //Adiciona muita saturação a batata
-            batataHtml.className= 'batata batata-fogo-queimando'
-        } else if(tempoRestante <= 5){
-            //Adiciona pouco saturação a batata
-            batataHtml.className= 'batata batata-fogo'
-        } else if(tempoRestante <= 7) {
-            //deixa a batata pegando fogo
-            batataHtml.src = '../assets/batata-fogo.png'
+        //Verifica se o modo é o contra o tempo
+        if(modo != 'contra-o-tempo'){
+            //Verifica quanto tempo falta
+            if (tempoRestante <= 3){
+                //Adiciona muita saturação a batata
+                batataHtml.className= 'batata batata-fogo-queimando'
+            } else if(tempoRestante <= 5){
+                //Adiciona pouco saturação a batata
+                batataHtml.className= 'batata batata-fogo'
+            } else if(tempoRestante <= 7) {
+                //deixa a batata pegando fogo
+                batataHtml.src = '../assets/batata-fogo.png'
+            } else {
+                //Volta a batata ao normar
+                batataHtml.src = '../assets/batata-Sfogo.png'
+                batataHtml.className = 'batata'
+                //Reseta a batata
+                batataHtml.style.display = 'block'
+                batataHtml.style.animation = 'pulsando 0.9s ease-out infinite'  
+            }
         } else {
-            //Volta a batata ao normar
-            batataHtml.src = '../assets/batata-Sfogo.png'
-            batataHtml.className = 'batata'
-            //Reseta a batata
-            batataHtml.style.display = 'block'
-            batataHtml.style.animation = 'pulsando 0.9s ease-out infinite'  
+            if (tempoRestante <= 10){
+                //Adiciona muita saturação a batata
+                batataHtml.className= 'batata batata-fogo-queimando'
+            } else if(tempoRestante <= 30){
+                //Adiciona pouco saturação a batata
+                batataHtml.className= 'batata batata-fogo'
+            } else if(tempoRestante <= 50) {
+                //deixa a batata pegando fogo
+                batataHtml.src = '../assets/batata-fogo.png'
+            } else {
+                //Volta a batata ao normar
+                batataHtml.src = '../assets/batata-Sfogo.png'
+                batataHtml.className = 'batata'
+                //Reseta a batata
+                batataHtml.style.display = 'block'
+                batataHtml.style.animation = 'pulsando 0.9s ease-out infinite'  
+            }
         }
 
         //Verifica se o tempo chegou a zero
@@ -532,12 +528,16 @@ const selecionarJogador = () =>{
 
 //Função para atualizar o index do jogador atual
 const atualizarIndexJogadorAtual = () => {
+    //Vai para o proximo jogador
     indexJogador++
+    //Verifica se o proximo jogador ja perdeu, se sim soma mais 1, e pula ele
     if(jogadoresPerderam.includes(indexJogador)){
         indexJogador++
     } 
-    if(indexJogador >= quantidadeDeJogadores){
+    //Verifica se o proximo jogador passa da quantidade selecionada, se sim seta para o primeiro jogador
+    if(indexJogador >= quantidadeDeJogadores){  
         indexJogador = 0
+        //Verifica se o primeiro jogador perdeu, se sim repete a função
         if(jogadoresPerderam.includes(indexJogador)){
             return atualizarIndexJogadorAtual()
         } 
@@ -589,12 +589,15 @@ const ativarEsperarJogador = () => {
     secaoEsperarHtml.style.display = 'flex'
     //Coloca o nome do atual jogador a jogar
     alterarNomeEsperarJogador(indexJogador)
+    //Desabilita o input
+    inputPalavraHtml.style.display = 'none'
     //ativa o esperar jogador
     esperandoJogador = true
 }
 
 //Função para trocar o nome do jogador na espera
 const alterarNomeEsperarJogador = (index) =>{
+    //Verifica qual o próximo jogador, adiciona o jogador atual na tela esperar
     if(index == 0){
         esperarNomeJogadorHtml.innerHTML = nomeJogador1Html.innerHTML
     } else if(index == 1){
@@ -606,6 +609,37 @@ const alterarNomeEsperarJogador = (index) =>{
     }
 }
 
+//Função para reniciar o jogo
+const reniciarJogo = () => {
+    //Desativa a seção de resultados e ativa a seção do jogo
+    secaoResultadoHtml.style.display = 'none'
+    secaoJogoHtml.style.display = 'flex'
+    
+    //Reseta o score dos jogadores
+    scoreJogador1Html.innerHTML = '0'
+    scoreJogador2Html.innerHTML = '0'
+    scoreJogador3Html.innerHTML = '0'
+    scoreJogador4Html.innerHTML = '0'
+
+    //Reseta a lista de palavras usadas
+    listaDePalavrasUsadasHtml.innerHTML = ''
+    
+    //Reseta o tempo    
+    definirTempo()
+
+    //Escolhe uma letra aleatoria
+    adicionarLetraAleatoria()
+
+    //Seta o foco no input da palavra
+    inputPalavraHtml.focus()
+
+    //Seleciona o primeiro jogador
+    selecionarJogador()
+
+    //Seta o jogo como ativo
+    jogoAtivo = true
+}
+
 //Adiciona o evento de click na secao para esperar o jogador
 secaoEsperarHtml.addEventListener('click', () => {
     //destiva a seção esperar
@@ -613,7 +647,12 @@ secaoEsperarHtml.addEventListener('click', () => {
     //Desativa o esperando jogador
     esperandoJogador = false
     //Reseta o input
-    inputPalavraHtml.value = ''
+    inputPalavraHtml.style.display = 'block'
     //Foca automaticamente no input palavra
     inputPalavraHtml.focus()
-} )
+});
+
+//Adiciona o evento de click no botao para reniciar
+botaoReniciarHtml.addEventListener('click', () => {
+    reniciarJogo()
+})

@@ -394,9 +394,9 @@ h4{
     height: 100vh;
     width: 100vw;
 
-    background: #fff;
-    font-size: 22px;
-    color: #000;
+    background: url('../assets/Fundo.jpg');
+    font-size: 26px;
+    color: #ffbe19;
     text-align: center;
 }
 

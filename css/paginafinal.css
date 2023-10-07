@@ -63,8 +63,12 @@
     font-weight: 800;
 }
 
+.resultado-jogador-nome{
+    color: #fff;
+    margin: 5px;
+}
+
 .label-score, .resultado-score{
-    margin: 10px 0;
     color: #3C5277;
 }
 
