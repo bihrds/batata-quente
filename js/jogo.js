@@ -353,24 +353,44 @@ setInterval(()=>{
                 //Adiciona o jogador a lista de perdedor
                 adicionarJogadorPerdedor(indexJogador)
                 //Verifica se ainda tem mais jogadores a jogar
-                if(jogadoresPerderam.length == quantidadeDeJogadores - 1){
-                    jogoAtivo = false
-                }else{
-                    //Ativa a seção esperar jogador
-                    //O setTimeout para dar o tempo da animação acontecer
-                    setTimeout(()=>{
-                        ativarEsperarJogador()
-                    }, 900)
-                    //Reseta o tempo 
-                    definirTempo()
-                    //Seleciona o proximo jogador
-                    atualizarIndexJogadorAtual()
-                    selecionarJogador()
-                    //Se for o modo contra o tempo reseta a lista de palavras usadas
-                    if(modo == 'contra-o-tempo'){
+                if(modo == 'contra-o-tempo'){
+                    if(jogadoresPerderam.length == quantidadeDeJogadores){
+                        jogoAtivo = false
+                    }else{
+                        //Ativa a seção esperar jogador
+                        //O setTimeout para dar o tempo da animação acontecer
+                        setTimeout(()=>{
+                            ativarEsperarJogador()
+                        }, 900)
+                        //Reseta o tempo 
+                        definirTempo()
+                        //Seleciona o proximo jogador
+                        atualizarIndexJogadorAtual()
+                        selecionarJogador()
+                        //Se for o modo contra o tempo reseta a lista de palavras usadas
                         listaDePalavrasUsadasHtml.innerHTML = ''
                     }
                 }
+
+                if(modo == 'multiplayer'){
+                    if(jogadoresPerderam.length == quantidadeDeJogadores - 1){
+                        jogoAtivo = false
+                    }else{
+                        //Ativa a seção esperar jogador
+                        //O setTimeout para dar o tempo da animação acontecer
+                        setTimeout(()=>{
+                            ativarEsperarJogador()
+                        }, 900)
+                        //Reseta o tempo 
+                        definirTempo()
+                        //Seleciona o proximo jogador
+                        atualizarIndexJogadorAtual()
+                        selecionarJogador()
+                        //Se for o modo contra o tempo reseta a lista de palavras usadas
+                        listaDePalavrasUsadasHtml.innerHTML = ''
+                    }
+                }
+
             } else {
                 //Seta para o modo solo o jogo ativo como false
                 jogoAtivo = false
