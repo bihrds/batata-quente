@@ -222,27 +222,52 @@ function encerrarJogoQuandoNaoAtivo() {
     // Ativa a div da tela de resultados
     secaoResultadoHtml.style.display = 'block';
 
-    // Atualize o conteúdo da tela de resultados com os valores dos pontos dos jogadores
-    const resultadoJogador1 = scoreJogador1Html.innerHTML;
-    const resultadoJogador2 = scoreJogador2Html.innerHTML;
-    const resultadoJogador3 = scoreJogador3Html.innerHTML;
-    const resultadoJogador4 = scoreJogador4Html.innerHTML;
+    // Supondo que existem elementos com as classes resultado-score
+    // onde você deseja exibir as pontuações dos jogadores.
+    const resultadoJogador1 = parseInt(scoreJogador1Html.innerHTML);
+    const resultadoJogador2 = parseInt(scoreJogador2Html.innerHTML);
+    const resultadoJogador3 = parseInt(scoreJogador3Html.innerHTML);
+    const resultadoJogador4 = parseInt(scoreJogador4Html.innerHTML);
 
-    let listaResultaodoJogadores = []
+    // Ordena as pontuações em ordem decrescente
+    const pontuacoes = [resultadoJogador1, resultadoJogador2, resultadoJogador3, resultadoJogador4];
+    pontuacoes.sort((a, b) => b - a);
 
-    if(quantidadeDeJogadores == 1){
-        containerSegundoLugarHtml.style.display = 'none'
-        containerTerceiroLugarHtml.style.display = 'none'
-        labelPrimeiroLugarHtml.style.display = 'none'
+    // Atribui os nomes e pontuações aos jogadores com base na posição
+    nomePrimeiroLugarHtml = nomeJogador1Html.innerHTML;
+    scorePrimeiroLugarHtml = pontuacoes[0];
 
-        containerPrimeiroLugarHtml.style.width = '50%'
-        containerPrimeiroLugarHtml.style.justifyContent = 'center'
+    nomeSegundoLugarHtml = nomeJogador2Html.innerHTML;
+    scoreSegundoLugarHtml = pontuacoes[1];
 
-        nomePrimeiroLugarHtml.innerHTML = nomeJogador1Html.innerHTML
-        scorePrimeiroLugarHtml.innerHTML = resultadoJogador1
-    } else if(quantidadeDeJogadores == 2){
-        //Ajeita de acordo com a quantidade
+    nomeTerceiroLugarHtml = nomeJogador3Html.innerHTML;
+    scoreTerceiroLugarHtml = pontuacoes[2];
+
+    nomeQuartoLugarHtml = nomeJogador4Html.innerHTML;
+    scoreQuartoLugarHtml = pontuacoes[3];
+
+    // Desabilite os inputs dos jogadores
+    inputJogador1Html.disabled = true;
+    inputJogador2Html.disabled = true;
+    inputJogador3Html.disabled = true;
+    inputJogador4Html.disabled = true;
+
+    let listaResultaodoJogadores = [];
+
+    if (quantidadeDeJogadores == 1) {
+        containerSegundoLugarHtml.style.display = 'none';
+        containerTerceiroLugarHtml.style.display = 'none';
+        labelPrimeiroLugarHtml.style.display = 'none';
+
+        containerPrimeiroLugarHtml.style.width = '50%';
+        containerPrimeiroLugarHtml.style.justifyContent = 'center';
+
+        nomePrimeiroLugarHtml.innerHTML = nomePrimeiroLugar;
+        scorePrimeiroLugarHtml.innerHTML = scorePrimeiroLugar;
+    } else if (quantidadeDeJogadores == 2) {
+
     }
+
 }
 
 //Para fazer o timer funcionar
