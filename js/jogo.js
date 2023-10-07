@@ -215,36 +215,47 @@ const adicionarJogadorPerdedor = (index) => {
     jogadoresPerderam.sort((a,b)=> a - b)
 }
 // Função para chamar terminarJogo com os nomes e pontuações dos jogadores
+function atualizarPodium(scoreJogador1, nomeJogador1, scoreJogador2, nomeJogador2, scoreJogador3, nomeJogador3, scoreJogador4, nomeJogador4) {
+    // Crie um array de objetos para representar os jogadores com seus nomes e pontuações
+    const jogadores = [
+      { nome: nomeJogador1, score: scoreJogador1 },
+      { nome: nomeJogador2, score: scoreJogador2 },
+      { nome: nomeJogador3, score: scoreJogador3 },
+      { nome: nomeJogador4, score: scoreJogador4 }
+    ];
+  
+    // Ordene os jogadores com base nas pontuações em ordem decrescente
+    jogadores.sort((a, b) => b.score - a.score);
+  
+    // Atribua os nomes e pontuações aos jogadores no pódio
+    nomePrimeiroLugar = jogadores[0].nome;
+    scorePrimeiroLugar = jogadores[0].score;
+  
+    nomeSegundoLugar = jogadores[1].nome;
+    scoreSegundoLugar = jogadores[1].score;
+  
+    nomeTerceiroLugar = jogadores[2].nome;
+    scoreTerceiroLugar = jogadores[2].score;
+  }
+  
+// Função para chamar terminarJogo com os nomes e pontuações dos jogadores
 function encerrarJogoQuandoNaoAtivo() {
     // Desabilita a div do jogo
     secaoJogoHtml.style.display = 'none';
 
     // Ativa a div da tela de resultados
     secaoResultadoHtml.style.display = 'block';
-
-    // Supondo que existem elementos com as classes resultado-score
-    // onde você deseja exibir as pontuações dos jogadores.
-    const resultadoJogador1 = parseInt(scoreJogador1Html.innerHTML);
-    const resultadoJogador2 = parseInt(scoreJogador2Html.innerHTML);
-    const resultadoJogador3 = parseInt(scoreJogador3Html.innerHTML);
-    const resultadoJogador4 = parseInt(scoreJogador4Html.innerHTML);
-
-    // Ordena as pontuações em ordem decrescente
-    const pontuacoes = [resultadoJogador1, resultadoJogador2, resultadoJogador3, resultadoJogador4];
-    pontuacoes.sort((a, b) => b - a);
-
-    // Atribui os nomes e pontuações aos jogadores com base na posição
-    nomePrimeiroLugarHtml = nomeJogador1Html.innerHTML;
-    scorePrimeiroLugarHtml = pontuacoes[0];
-
-    nomeSegundoLugarHtml = nomeJogador2Html.innerHTML;
-    scoreSegundoLugarHtml = pontuacoes[1];
-
-    nomeTerceiroLugarHtml = nomeJogador3Html.innerHTML;
-    scoreTerceiroLugarHtml = pontuacoes[2];
-
-    nomeQuartoLugarHtml = nomeJogador4Html.innerHTML;
-    scoreQuartoLugarHtml = pontuacoes[3];
+    
+    atualizarPodium(
+        scoreJogador1Html,
+        nomeJogador1Html.innerHTML,
+        scoreJogador2Html,
+        nomeJogador2Html.innerHTML,
+        scoreJogador3Html,
+        nomeJogador3Html.innerHTML,
+        scoreJogador4Html,
+        nomeJogador4Html.innerHTML
+      );
 
     // Desabilite os inputs dos jogadores
     inputJogador1Html.disabled = true;
@@ -267,7 +278,6 @@ function encerrarJogoQuandoNaoAtivo() {
     } else if (quantidadeDeJogadores == 2) {
 
     }
-
 }
 
 //Para fazer o timer funcionar
