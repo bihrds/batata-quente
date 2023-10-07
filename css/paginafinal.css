@@ -72,7 +72,7 @@
     color: #3C5277;
 }
 
-.botao-reniciar-jogo, .botao-voltar-modos{
+.botao-reiniciar-jogo, .botao-voltar-modos{
     position: absolute;
 
     padding: 10px 20px;
@@ -88,7 +88,7 @@
     color: #8F0F0F;
 }
 
-.botao-reniciar-jogo{
+.botao-reiniciar-jogo{
     top: 10px;
     right: 10px;
 }
@@ -124,7 +124,7 @@
     }
 }
 @media (max-width: 500px) {   
-    .botao-reniciar-jogo, .botao-voltar-modos{
+    .botao-reiniciar-jogo, .botao-voltar-modos{
         top: auto;
         bottom: 10px;
         font-size: 16px;

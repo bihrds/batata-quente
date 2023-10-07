@@ -65,7 +65,7 @@ const scoreTerceiroLugarHtml = document.querySelector('.terceiro-lugar .resultad
 const labelPrimeiroLugarHtml = document.querySelector('.primeiro')
 const labelSegundoLugarHtml = document.querySelector('.segundo')
 
-const botaoReniciarHtml = document.querySelector('.botao-reniciar-jogo')
+const botaoReiniciarHtml = document.querySelector('.botao-reiniciar-jogo')
 
 
 //URL da página
@@ -618,8 +618,8 @@ const alterarNomeEsperarJogador = (index) =>{
     }
 }
 
-//Função para reniciar o jogo
-const reniciarJogo = () => {
+//Função para reiniciar o jogo
+const reiniciarJogo = () => {
     //Desativa a seção de resultados e ativa a seção do jogo
     secaoResultadoHtml.style.display = 'none'
     secaoJogoHtml.style.display = 'flex'
@@ -644,9 +644,13 @@ const reniciarJogo = () => {
 
     //Seleciona o primeiro jogador
     selecionarJogador()
-
+    
+    //Resta o aviso de palvra incorreta
+    avisoPalavraHtml.style.display = 'none'
+    
     //Seta o jogo como ativo
     jogoAtivo = true
+    
 }
 
 //Adiciona o evento de click na secao para esperar o jogador
@@ -662,6 +666,6 @@ secaoEsperarHtml.addEventListener('click', () => {
 });
 
 //Adiciona o evento de click no botao para reniciar
-botaoReniciarHtml.addEventListener('click', () => {
-    reniciarJogo()
+botaoReiniciarHtml.addEventListener('click', () => {
+    reiniciarJogo()
 })
