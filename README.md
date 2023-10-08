@@ -44,7 +44,7 @@ Divirta-se jogando o Jogo da Batata Quente e desafie seus amigos para ver quem p
 
 ## Autores
 
-- [antoniomartins13](https://github.com/antoniomartins13)
+- [@antoniomartins13](https://github.com/antoniomartins13)
 - [@bihrds](https://github.com/bihrds)
 - [@daviddjustt](https://github.com/daviddjustt)
 - [@andrelipef](https://github.com/andrelipef)
