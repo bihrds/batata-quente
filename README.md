@@ -1,6 +1,5 @@
 # Jogo Batata Quente 
 
-##Introdução
 O Jogo da Batata Quente é uma aplicação web divertida que coloca à prova seu vocabulário e agilidade. O jogo é projetado para 1 a 4 jogadores e oferece três modos de jogo emocionantes: Solo, Versus e Contra o Tempo. O objetivo principal é evitar que a batata exploda enquanto se formam palavras que começam com uma letra específica.
 
 Explicação de como funciona em vídeo : https://youtu.be/U9bMfMTpRLU
