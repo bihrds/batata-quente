@@ -341,8 +341,9 @@ setInterval(()=>{
             if(modo != 'solo'){
                 //Adiciona o jogador a lista de perdedor
                 adicionarJogadorPerdedor(indexJogador)
-                //Verifica se ainda tem mais jogadores a jogar
+
                 if(modo == 'contra-o-tempo'){
+                    //Verifica se ainda tem mais jogadores a jogar
                     if(jogadoresPerderam.length == quantidadeDeJogadores){
                         jogoAtivo = false
                     }else{
@@ -361,7 +362,8 @@ setInterval(()=>{
                     }
                 }
 
-                if(modo == 'multiplayer'){
+                if(modo == 'versus'){
+                    //Verifica se ainda tem mais jogadores a jogar
                     if(jogadoresPerderam.length == quantidadeDeJogadores - 1){
                         jogoAtivo = false
                     }else{
