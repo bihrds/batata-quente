@@ -78,21 +78,17 @@ const quantidadeDeJogadores = urlDaPagina.substring(urlDaPagina.indexOf(parametr
 //Função que desabilita os inputs
 const desabilitarInputsJogadores = (quantidadeDeJogadores) => {
     //Verifica a quantidade de jogadores passado na url e desabilita os inputs de acordo com ela
-    if(quantidadeDeJogadores == 1){
-        inputJogador2Html.style.display = 'none'
-        inputJogador3Html.style.display = 'none'
-        inputJogador4Html.style.display = 'none'
+    if(quantidadeDeJogadores >= 1){
+        inputJogador1Html.style.display = 'block'
     }
-    else if(quantidadeDeJogadores == 2){
-        inputJogador3Html.style.display = 'none'
-        inputJogador4Html.style.display = 'none'
+    if(quantidadeDeJogadores >= 2){
+        inputJogador2Html.style.display = 'block'
     }
-    else if(quantidadeDeJogadores == 3){
-        inputJogador4Html.style.display = 'none'
+    if(quantidadeDeJogadores >= 3){
+        inputJogador3Html.style.display = 'block'
     }
-    else {
-        //O return está sendo usado para que a função acabe
-        return
+    if(quantidadeDeJogadores == 4){
+        inputJogador4Html.style.display = 'block'
     }
 }
 
@@ -330,6 +326,9 @@ setInterval(()=>{
         if(timerHtml.innerHTML == '00'){
             //adiciona a animação de explosão da batata
             batataHtml.style.animation = 'explodindo 1s ease-out infinite'
+
+            //Desabilita o input
+            inputPalavraHtml.style.display = 'none'
             //Espera 900 ms para executar o que tem dentro
             setTimeout(()=>{
                 //toca o som de explosão
@@ -352,6 +351,7 @@ setInterval(()=>{
                         setTimeout(()=>{
                             ativarEsperarJogador()
                         }, 900)
+                        inputPalavraHtml.style.display = 'block'
                         //Reseta o tempo 
                         definirTempo()
                         //Seleciona o proximo jogador
@@ -372,6 +372,7 @@ setInterval(()=>{
                         setTimeout(()=>{
                             ativarEsperarJogador()
                         }, 900)
+                        inputPalavraHtml.style.display = 'block'
                         //Reseta o tempo 
                         definirTempo()
                         //Seleciona o proximo jogador
@@ -381,7 +382,6 @@ setInterval(()=>{
                         listaDePalavrasUsadasHtml.innerHTML = ''
                     }
                 }
-
             } else {
                 //Seta para o modo solo o jogo ativo como false
                 jogoAtivo = false

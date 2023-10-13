@@ -83,7 +83,7 @@ main{
     cursor: pointer;
     border: none;
     margin: 10px auto 0 auto;
-    display: block;
+    display: none;
     transition: 0.3s;
 }
 
