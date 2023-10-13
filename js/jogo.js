@@ -400,29 +400,30 @@ setInterval(()=>{
     }
 }, 1000)
 
+//função para tirar caracteres especiais da palavra
+const tirarCaracterEspecial = (palavra) => {
+    const palavraMinusculaSemEspaco = palavra.toLowerCase().trim()
+    const arrayDaPalavra = palavraMinusculaSemEspaco.split('')
+    //Verifica se tem acento em cada letra da palavra e substitui pela letra sem ascento
+    return arrayDaPalavra.map((item) => {
+        if(item == 'á' || item == 'à' || item == 'ã'){
+            return 'a'
+        } else if(item == 'é' || item == 'ê'){
+            return 'e'
+        } else if(item == 'í'){
+            return 'i'
+        } else if(item == 'ô' || item == 'ó' || item == 'õ'){
+            return 'o'
+        } else if(item == 'ç'){
+            return 'c'
+        } else {
+            return item
+        }
+    }).reduce((acc, item) => acc + item,'')//Forma a palavra novamente
+}
+
 //Função para validar a palavra escrita
 const validarPalavra = () => {
-    //função para tirar caracteres especiais da palavra
-    const tirarCaracterEspecial = (palavra) => {
-        const palavraMinusculaSemEspaco = palavra.toLowerCase().trim()
-        const arrayDaPalavra = palavraMinusculaSemEspaco.split('')
-        //Verifica se tem acento em cada letra da palavra e substitui pela letra sem ascento
-        return arrayDaPalavra.map((item) => {
-            if(item == 'á' || item == 'à' || item == 'ã'){
-                return 'a'
-            } else if(item == 'é' || item == 'ê'){
-                return 'e'
-            } else if(item == 'í'){
-                return 'i'
-            } else if(item == 'ô' || item == 'ó' || item == 'õ'){
-                return 'o'
-            } else if(item == 'ç'){
-                return 'c'
-            } else {
-                return item
-            }
-        }).reduce((acc, item) => acc + item,'')//Forma a palavra novamente
-    }
     
     //Pega a palavra do input
     const palavra = inputPalavraHtml.value
@@ -566,8 +567,10 @@ secaoJogoHtml.addEventListener('keydown',(e)=>{
         //verifica se a palavra está válida
         if(validarPalavra()){
             //Adiciona a palavra na lista de palavras usadas
-            listaDePalavrasUsadasHtml.innerHTML = `${listaDePalavrasUsadasHtml.innerHTML} ${inputPalavraHtml.value}`
+            listaDePalavrasUsadasHtml.innerHTML = `${listaDePalavrasUsadasHtml.innerHTML} ${tirarCaracterEspecial(inputPalavraHtml.value.trim().toLowerCase())}`
+            //Adiciona score
             adicionarScore()
+            //Troca a letra aleatória
             adicionarLetraAleatoria()
             
             //reseta o input
