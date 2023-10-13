@@ -638,6 +638,9 @@ const reiniciarJogo = () => {
     //Reseta a lista de palavras usadas
     listaDePalavrasUsadasHtml.innerHTML = ''
     
+    //Restea o input para as palavras
+    inputPalavraHtml.style.display = 'block'
+
     //Reseta o tempo    
     definirTempo()
 
