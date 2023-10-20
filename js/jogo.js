@@ -212,9 +212,6 @@ somBoom.src = '../assets/boom.mp3'
 const adicionarJogadorPerdedor = (index) => {
     //Adiciona o index atual na lista de jogadores que perderam
     jogadoresPerderam.push(index)
-
-    //Ordena a lista de menor para maior numero
-    jogadoresPerderam.sort((a,b)=> a - b)
 }
 
 // Função para chamar terminarJogo com os nomes e pontuações dos jogadores
@@ -350,8 +347,8 @@ setInterval(()=>{
                         //O setTimeout para dar o tempo da animação acontecer
                         setTimeout(()=>{
                             ativarEsperarJogador()
+                            inputPalavraHtml.style.display = 'block'
                         }, 900)
-                        inputPalavraHtml.style.display = 'block'
                         //Reseta o tempo 
                         definirTempo()
                         //Seleciona o proximo jogador
@@ -371,8 +368,8 @@ setInterval(()=>{
                         //O setTimeout para dar o tempo da animação acontecer
                         setTimeout(()=>{
                             ativarEsperarJogador()
+                            inputPalavraHtml.style.display = 'block'
                         }, 900)
-                        inputPalavraHtml.style.display = 'block'
                         //Reseta o tempo 
                         definirTempo()
                         //Seleciona o proximo jogador
@@ -389,7 +386,7 @@ setInterval(()=>{
         } else {
             //toca o som de tick
             somTick.play()
-            //Coloca o temop subtraído no html
+            //Coloca o tempo subtraído no html
             if(modo != 'contra-o-tempo'){
                 timerHtml.innerHTML = `0${tempoSubtraido}`
             } else {
@@ -640,6 +637,9 @@ const reiniciarJogo = () => {
     
     //Restea o input para as palavras
     inputPalavraHtml.style.display = 'block'
+
+    //Reseta a lista de jogadores que perderam
+    jogadoresPerderam = [] 
 
     //Reseta o tempo    
     definirTempo()
